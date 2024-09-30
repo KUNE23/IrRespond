@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report Respon</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<style>
+
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: center;
+        } 
+</style>
+<body>
+         <div class="container">
+          <center>
+            <h2 class="card-title"><b>Incident Report Respond - Rockshore Sub-HQ</b></h2>
+          </center>
+          <HR></HR>
+          <br>
+            <div class="mb-3 col">
+               <label for="case" class="form-label" >Case :</label>
+               <input type="number" id="case" class="form-control" placeholder="006">
+              </div>
+
+              <div class="mb-3 col" style="min-width: 180px;">
+        <label for="type" class="form-label">Type :</label>
+        <select class="form-select" id="type">
+          <option selected disabled value="">Select...</option>
+          <option value="OIS" title="Officer Involved Shooting">OIS</option>
+          <option value="LERI" title="Law Enforcement Related Injury">LERI</option>
+          <option value="ICD" title="In-Custody Death">ICD</option>
+          <option value="CUOF" title="Categorical Use of Force">CUOF</option>
+        </select>
+    </div>
+
+<div class="mb-3 col" style="min-width: 180px;">
+  <label for="category" class="form-label">Category :</label>
+  <select class="form-select" id="category">
+    <option selected disabled value="">Select...</option>
+    <option value="UFJ" title="Use Force Justified">UFJ</option>
+    <option value="OGI" title="On Going Investigation">OGI</option>
+    <option value="UFU" title=" Use Force Unjustified">UFU</option>
+  </select>
+</div>
+
+<div class="mb-3 col">
+  <label for="date" class="form-label">Date :</label>
+  <input type="date" name="begin" placeholder="dd-mm-yyyy" 
+  value="" min="1997-01-01" max="2030-12-31" id="date">
+</div>
+
+<div class="mb-3 col">
+  <label for="rankname" class="form-label">Rank Full Name :</label>
+  <input type="text" id="rankname" class="form-control" placeholder="Lieutenant Zephyr Parker">
+</div>
+
+<div class="mb-3 col">
+  <button type ="button" class="btn btn-primary" id="generate-bbcode-btn">Generate BB Code</button> 
+</div>
+
+<div class="mb-3 col">
+  <label for="bbcode-output" class="form-label">BB Code Output :</label>
+  <textarea id="bbcode-output" class="form-control" rows="10">    
+  </textarea>
+    <button class="btn btn-secondary" onclick="bbcodecopy()" >Copy text</button>
+</div>
+
+</div>
+<!-- button -->
+</div>
+<center>
+  <footer>
+    <span>
+      Copyright © 2024 KUNE
+    </span>
+  </footer>
+</center>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#generate-bbcode-btn').on('click', function() {
+      var Case = $('#case').val();
+      var Type = $('#type').val();
+      var Category = $('#category').val();
+      var date = new Date($('#date').val());
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var formattedDate = (day < 10 ? '0' + day : day) + '/' + (month < 10 ? '0' + month : month) + '/' + year;
+      var monthName = $('#month').val();
+      var rankname = $('#rankname').val();
+
+        var bbcode = '[divbox=transparent]\n';
+        bbcode += '[size=95]\n';
+        bbcode += '[center][img]https://i.imgur.com/2Zt5baY.png[/img]\n';
+        bbcode += '\n';
+        bbcode += '[b]INCIDENT REPORT[/b][/center] \n';
+        bbcode += '[aligntable=left,270,15,0,0,0,transparent][b]CASE #:[/b] '  + Case + '\n';
+        bbcode +=  '[b]TYPE:[/b] '  + Type + '[/aligntable][aligntable=right,200,0,15,0,0,transparent][right][b]CATEGORY:[/b] '  + Category +  '\n';
+        // bbcode += '[b]DATE:	[/b] '  + formattedDate + '\n';
+        bbcode += '[b]DATE: [/b] ' + formattedDate + '\n';
+        bbcode += '[/aligntable]\n';
+        bbcode += '[hr][/hr]\n';
+        bbcode += '[center][b][size=80]RESULT INFORMATION[/b][/size][/center]\n';
+        bbcode += '[hr][/hr]\n';
+        bbcode += '[aligntable=middle,0,15,15,0,0,transparent]\n';
+        bbcode +=  'By this letter, I would like to inform you that your incident report has been thoroughly reviewed. The use of force is Justified. \n';
+        bbcode += 'There isnt any further investigation on your Incident Report. \n';
+        bbcode += '\n';
+        bbcode += '\n';
+        bbcode += 'Best Regards,\n';
+        bbcode += '\n';
+        bbcode += '' +  rankname + '\n';
+        bbcode += '[/divbox]\n';
+        $('#bbcode-output').val(bbcode);
+    });
+});
+
+function bbcodecopy() {
+  // Get the text field
+  var copyText = document.getElementById("bbcode-output");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Text Berhasil Di Copy ");
+};
+
+
+</script>
+<!-- jQuery -->
+<script src="assets/js/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="assets/js/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="assets/js/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="assets/js/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
